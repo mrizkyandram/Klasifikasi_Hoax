@@ -1,0 +1,40 @@
+{% extends 'layout.html' %} {% block title %} Hasil Prediksi {% endblock %} {%
+block body %}
+<div class="container">
+  <table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Narasi</th>
+        <th>Prediksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in value %}
+      <tr>
+        <td>{{row[1]}}</td>
+        <td>{{row[2]}}</td>
+        <td>
+          <a
+            href="/login/hasil_prediksi/hapus/{{ row.0 }}"
+            class="btn btn-danger btn-xs"
+            onclick="return confirm('Yakin ingin hapus?')"
+            >Hapus</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %} {% block scripts %}
+<script>
+  $(document).ready(function () {
+    $("#data").DataTable({
+      searching: false,
+      info: true,
+      ordering: false,
+      lengthChange: false,
+    });
+  });
+</script>
+{% endblock %}
